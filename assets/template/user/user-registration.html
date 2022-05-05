@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="{% static 'main/img/fav.png' %}">
+	<!-- Author Meta -->
+	<meta name="author" content="colorlib">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Travel</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+		<!--
+		CSS
+		============================================= -->
+		<link rel="stylesheet" href="{% static 'main/css/linearicons.css' %}">
+		<link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'main/css/bootstrap.css' %}">
+		<link rel="stylesheet" href="{% static 'main/css/magnific-popup.css' %}">
+		<link rel="stylesheet" href="{% static 'main/css/jquery-ui.css' %}">				
+		<link rel="stylesheet" href="{% static 'main/css/nice-select.css' %}">							
+		<link rel="stylesheet" href="{% static 'main/css/animate.min.css' %}">
+		<link rel="stylesheet" href="{% static 'main/css/owl.carousel.css' %}">				
+		<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+	</head>
+	<body>	
+		<header id="header">
+			<div class="header-top">
+				<div class="container">
+				  <div class="row align-items-center">
+					  <div class="col-lg-6 col-sm-6 col-6 header-top-left">
+						  <ul>
+							  <li><a href="#">Visit Us</a></li>
+							  <li><a href="#">Buy Tickets</a></li>
+						  </ul>			
+					  </div>
+					  <div class="col-lg-6 col-sm-6 col-6 header-top-right">
+						<div class="header-social">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-dribbble"></i></a>
+							<a href="#"><i class="fa fa-behance"></i></a>
+						</div>
+					  </div>
+				  </div>			  					
+				</div>
+			</div>
+			<div class="container main-menu">
+				<div class="row align-items-center justify-content-between d-flex">
+				  <div id="logo">
+					<a href="{% url 'index' %}"><img src="img/logo.png" alt="" title="" /></a>
+				  </div>
+				  <nav id="nav-menu-container">
+					<ul class="nav-menu">
+					  <li><a href="{% url 'index' %}">Home</a></li>
+					  <li class="menu-has-children"><a href="">Login</a>
+						<ul>
+						  <li><a href="{% url 'admin-login' %}">Admin</a></li>
+						  <li><a href="{% url 'user-login' %}">User</a></li>
+						</ul>
+					  </li>				          					          		         
+					</ul>
+				  </nav><!-- #nav-menu-container -->					      		  
+				</div>
+			</div>
+		</header><!-- #header -->
+		<!-- start banner Area -->
+		<section class="banner-area relative">
+			<div class="overlay overlay-bg"></div>				
+			<div class="container">
+				<div class="row fullscreen align-items-center justify-content-between">
+					<div class="col-lg-4 col-md-6 banner-left">
+						<h1 class="text-white">User Registration</h1>
+					</div>
+					<br>
+					<div class="col-lg-6 col-md-6 banner-right">
+						 
+						<div class="tab-content" id="myTabContent">
+						  <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
+							<form method="post" class="form-wrap">]
+								{% csrf_token %}
+								{% if messages %}
+								{% for message in messages %}
+								
+								<script>
+									swal("Welcome!", "Registration Succesful!", "success");
+								</script>
+								
+								{% endfor %} 
+								{% endif %}
+								<input type="text" class="form-control" name="name" placeholder="Full Name" required>
+                                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                <input type="mobile" class="form-control" name="mobile" placeholder="Mobile Number" required>									
+								<input type="password" class="form-control" name="password" placeholder="Password" required>
+                                <input type="password" class="form-control" name="cpassword" placeholder="Confirm Password" required>
+								<button type="submit" class="primary-btn text-uppercase">Register</button>
+                                <a href="{% url 'user-login' %}">Already User Login here</a>								
+							</form>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>					
+		</section>
+		<!-- End banner Area -->			
+
+		<!-- start footer Area -->		
+		<footer class="footer-area section-gap">
+			<div class="container">
+
+				 
+				<div class="row footer-bottom d-flex justify-content-between align-items-center">
+					<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+					<div class="col-lg-4 col-sm-12 footer-social">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-dribbble"></i></a>
+						<a href="#"><i class="fa fa-behance"></i></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- End footer Area -->	
+
+		<script src="{% static 'main/js/vendor/jquery-2.2.4.min.js' %}"></script>
+		<script src="{% static 'main/js/popper.min.js' %}"></script>
+		<script src="{% static 'main/js/vendor/bootstrap.min.js' %}"></script>			
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>		
+		<script src="{% static 'main/js/jquery-ui.js' %}"></script>					
+		<script src="{% static 'main/js/easing.min.js' %}"></script>			
+		<script src="{% static 'main/js/hoverIntent.js' %}"></script>
+		<script src="{% static 'main/js/superfish.min.js' %}"></script>	
+		<script src="{% static 'main/js/jquery.ajaxchimp.min.js' %}"></script>
+		<script src="{% static 'main/js/jquery.magnific-popup.min.js' %}"></script>						
+		<script src="{% static 'main/js/jquery.nice-select.min.js' %}"></script>					
+		<script src="{% static 'main/js/owl.carousel.min.js' %}"></script>							
+		<script src="{% static 'main/js/mail-script.js' %}"></script>	
+		<script src="{% static 'main/js/main.js' %}"></script>	
+	</body>
+</html>
