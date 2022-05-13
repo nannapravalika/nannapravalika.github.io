@@ -29,3 +29,15 @@ def admin_complaints(request):
     complaint=UserComplaintModel.objects.all()
     return render(request,'admin/admin-complaints.html',{'complaint':complaint})
 
+def solve_ticket(request,id):
+    object = get_object_or_404(UserComplaintModel,complaint_id=id)
+    object.complaint_status="Solved"
+    object.save(update_fields=["complaint_status"])
+    return redirect('admin-complaints')
+
+def ignore_ticket(request,id):
+    object = get_object_or_404(UserComplaintModel,complaint_id=id)
+    object.complaint_status="Not Available"
+    object.save(update_fields=["complaint_status"])
+    return redirect('admin-complaints')
+

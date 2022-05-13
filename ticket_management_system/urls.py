@@ -31,9 +31,14 @@ urlpatterns = [
     path('user-home',user_views.user_home,name="user-home"),
     path('user-booking-status',user_views.user_booking_status,name="user-booking-status"),
     path('user-raise-complaints/<int:id>/',user_views.user_raise_complaints,name="user-raise-complaints"),
+    path('user-view-complaints',user_views.user_view_complaints,name="user-view-complaints"),
+    path('user-edit-complaints/<int:id>/',user_views.user_edit_complaints,name="user-edit-complaints"),
+    
     #admin
     path('admin-home',admin_views.admin_home,name="admin-dashboard"),
     path('admin-complaints',admin_views.admin_complaints,name="admin-complaints"),
+    path('solve-ticket/<int:id>/',admin_views.solve_ticket,name="solve-ticket"),
+    path('ignore-ticket/<int:id>/',admin_views.ignore_ticket,name="ignore-ticket"),
     path('admin-tickets-raised',admin_views.admin_tickets_raised,name="admin-tickets-raised"),
     path('accept-booking/<int:id>/',admin_views.accept_ticket,name="accept-booking"),
     path('reject-booking/<int:id>/',admin_views.reject_ticket,name="reject-booking"),

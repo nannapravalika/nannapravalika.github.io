@@ -248,7 +248,7 @@
                             <th>Train Name</th>
                             <th>Date</th>
                             <th>Complaint</th>
-                            <th></th>
+                            <th>Status</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -257,7 +257,10 @@
                             <td>{{t.train.train_name}}</td>
                             <td>{{t.train.date}}</td>
                             <td>{{t.complaint}}</td>
-                             
+                            <td>{{t.complaint_status}}</td>
+                            <td><a href="/solve-ticket/{{t.complaint_id}}" type="submit"><button class="btn btn-primary text-light">Solve</button></a></button></td>
+                            <td><a href="/ignore-ticket/{{t.complaint_id}}" type="submit"><button class="btn btn-danger">Ignore</button></a></button></td>
+
                           </tr>
                          {% endfor %}  
                         </tbody>

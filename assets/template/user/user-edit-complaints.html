@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -62,7 +63,7 @@
 					<ul class="nav-menu">
                         <li><a href="{% url 'user-home' %}">Home</a></li>
                         <li><a href="{% url 'user-booking-status' %}">Booking Status</a></li>
-						<li><a href="{% url 'user-view-complaints' %}">View Complaints</a></li>
+                        <li><a href="{% url 'user-view-complaints' %}">View Complaints</a></li>
                         <li><a href="{% url 'index' %}">Logout</a></li>
                                                                                            
                       </ul>
@@ -71,32 +72,44 @@
 			</div>
 		</header><!-- #header -->
 		<!-- start banner Area -->
-		<section class="banner-area relative">
+        <section class="banner-area relative">
 			<div class="overlay overlay-bg"></div>				
 			<div class="container">
-				<div class="row fullscreen align-items-center justify-content-between">
-					<div class="col-lg-4 col-md-6 banner-left">
-						<h1 class="text-white">Raise Complaints</h1>
-					</div>
+				<div class="row fullscreen align-items-center justify-content-between"> 
 					<br>
-					<div class="col-lg-6 col-md-6 banner-right">
-						 
-						<div class="tab-content" id="myTabContent">
-						  <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
-							<form method="post" class="form-wrap">
-								{% csrf_token %}
-								 
-								<input type="text" class="form-control" name="name" placeholder="Full Name" required>
- 
-								<textarea type="text" class="form-control" name="Complaint" placeholder="Write Your Complaint Here" rows="3" required></textarea>
-                                <button type="submit" class="primary-btn text-uppercase">Submit</button>							
-							</form>
-						  </div>
-						</div>
+					<div class="col-lg-12 col-md-12 banner-left bg-light">
+						 <br>
+                         <br>
+                         <br>
+                         <form method="post">
+                             {% csrf_token %}
+						<div class="row justify-content-center">
+                            <div class="col-sm-3">
+                               
+                                <label for="validationServer01">Complaint</label>
+                                {% for t in complaints %}
+                                <textarea name="complaint" type="text" class="form-control " id="validationServer01"  value="">{{t.complaint}}</textarea>
+                                
+                                 {% endfor %}
+                            </div>
+                            
+                           
+                            
+                        </div>
+                        <br>
+                         <br>
+                         <center>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        </center>
+                        <form>
+                        <br>
+                         <br>
+                         <br>
 					</div>
 				</div>
 			</div>					
 		</section>
+ 
 		<!-- End banner Area -->			
 
 		<!-- start footer Area -->		

@@ -14,7 +14,7 @@ class UserRegModel(models.Model):
         
 class UserBookTicketModel(models.Model):
     booking_id=models.AutoField(primary_key=True)
-    user_details=models.ForeignKey(UserRegModel,db_column="user",on_delete=models.CASCADE,related_name='user')        
+    user_details=models.ForeignKey(UserRegModel,db_column="user",on_delete=models.CASCADE,related_name='user',null=True)        
     book_from=models.CharField(max_length=100)
     book_to=models.CharField(max_length=100)
     date=models.CharField(max_length=100,null=True)
@@ -29,11 +29,11 @@ class UserBookTicketModel(models.Model):
         db_table='booking_details'
 
 class UserComplaintModel(models.Model):
-    complaint_id=models.AutoField(primary_key=100)
-    train=models.ForeignKey(UserBookTicketModel,db_column="train",on_delete=models.CASCADE) 
-    
+    complaint_id=models.AutoField(primary_key=True)
+    train=models.ForeignKey(UserBookTicketModel,db_column="train",on_delete=models.CASCADE,null=True) 
+    user=models.ForeignKey(UserRegModel,db_column="user",on_delete=models.CASCADE,null=True) 
     complaint=models.TextField()
-    
+    complaint_status=models.CharField(default="pending",max_length=100)
     class Meta:
             db_table='user_complaints' 
     

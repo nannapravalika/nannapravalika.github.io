@@ -62,7 +62,7 @@
 					<ul class="nav-menu">
                         <li><a href="{% url 'user-home' %}">Home</a></li>
                         <li><a href="{% url 'user-booking-status' %}">Booking Status</a></li>
-						<li><a href="{% url 'user-view-complaints' %}">View Complaints</a></li>
+                        <li><a href="{% url 'user-view-complaints' %}">View Complaints</a></li>
                         <li><a href="{% url 'index' %}">Logout</a></li>
                                                                                            
                       </ul>
@@ -71,32 +71,63 @@
 			</div>
 		</header><!-- #header -->
 		<!-- start banner Area -->
-		<section class="banner-area relative">
+        <section class="banner-area relative">
 			<div class="overlay overlay-bg"></div>				
 			<div class="container">
-				<div class="row fullscreen align-items-center justify-content-between">
-					<div class="col-lg-4 col-md-6 banner-left">
-						<h1 class="text-white">Raise Complaints</h1>
-					</div>
+				<div class="row fullscreen align-items-center justify-content-between"> 
 					<br>
-					<div class="col-lg-6 col-md-6 banner-right">
+					<div class="col-lg-12 col-md-12 banner-left bg-light">
 						 
 						<div class="tab-content" id="myTabContent">
 						  <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
-							<form method="post" class="form-wrap">
-								{% csrf_token %}
-								 
-								<input type="text" class="form-control" name="name" placeholder="Full Name" required>
- 
-								<textarea type="text" class="form-control" name="Complaint" placeholder="Write Your Complaint Here" rows="3" required></textarea>
-                                <button type="submit" class="primary-btn text-uppercase">Submit</button>							
-							</form>
+							 <div class="table-responsive">  
+                                <table class="table">
+                                    <thead>
+										
+                                        <tr>
+                                             
+                                            <th>Train Number</th>
+											<th>Train Name</th>
+											<th>From</th>
+											<th>To</th>
+											<th>Date</th>
+											<th>Time</th>
+											<th>Adults</th>
+											<th>Child</th>
+											 
+											<th>Complaint</th>
+                                            <th>Complaint Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+										{% for t in complaints %}
+                                        <tr>
+
+                                            <td>{{t.train.train_number}}</td>
+											<td>{{t.train.train_name}}</td>
+											<td>{{t.train.book_from}}</td>
+											<td>{{t.train.book_to}}</td>
+											<td>{{t.train.date}}</td>
+											<td>{{t.train.time}}</td>
+											<td>{{t.train.no_of_adults}}</td>
+											<td>{{t.train.no_of_child}}</td>
+											<td>{{t.complaint}}</td>
+                                            <td>{{t.complaint_status}}</td>
+                                            <td></td>
+											<td><a href="/user-edit-complaints/{{t.complaint_id}}" type="submit">Edit Complaint</a></td>
+										</tr>
+										{% endfor %}		
+                                    </tbody>
+                                </table>
+                            </div>
 						  </div>
 						</div>
 					</div>
 				</div>
 			</div>					
 		</section>
+ 
 		<!-- End banner Area -->			
 
 		<!-- start footer Area -->		

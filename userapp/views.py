@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.contrib import messages
 from .models import UserBookTicketModel,UserComplaintModel,UserRegModel 
 
@@ -46,14 +46,30 @@ def user_home(request):
 def user_booking_status(request):
     user_id=request.session["user_id"]
     tickets=UserBookTicketModel.objects.filter(user_details=user_id)
-    return render (request,'user/user-booking-status.html',{'tickets':tickets})
+    complaint=UserComplaintModel.objects.filter(train=user_id)
+    return render (request,'user/user-booking-status.html',{'tickets':tickets,'complaint':complaint})
 
 def user_raise_complaints(request,id):
     user_id=request.session["user_id"]
-    user=UserRegModel.objects.filter(user_id=user_id)
     if request.method=="POST":
         complaint=request.POST.get("Complaint")
         train=UserBookTicketModel.objects.filter(booking_id=id).first()
-        UserComplaintModel.objects.create(complaint=complaint,train=train)
+        user=UserRegModel.objects.filter(user_id=user_id).first()
         
-    return render(request,'user/user-raise-complaints.html',{'user':user})
+        UserComplaintModel.objects.create(complaint=complaint,train=train,user=user)
+        
+    return render(request,'user/user-raise-complaints.html')
+
+def user_view_complaints(request):
+    user_id=request.session["user_id"]
+    complaints=UserComplaintModel.objects.filter(user=user_id)
+    return render(request,'user/user-view-complaints.html',{'complaints':complaints})
+
+def user_edit_complaints(request,id):
+    complaints=UserComplaintModel.objects.filter(complaint_id=id)
+    if request.method=="POST":
+        obj=get_object_or_404(UserComplaintModel,complaint_id=id)
+        obj.complaint=request.POST.get("complaint")
+        obj.save()
+        
+    return render(request,'user/user-edit-complaints.html',{'complaints':complaints})
